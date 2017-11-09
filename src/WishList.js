@@ -55,10 +55,10 @@ class wishList extends React.Component {
             <input ref={(a) => this._inputElement = a}
               placeholder="item">
             </input>
-            <input ref={(a) => this._inputElement = a}
+            <input ref={(b) => this._inputElement = b}
               placeholder="description">
             </input>
-            <input ref={(a) => this._inputElement = a}
+            <input ref={(c) => this._inputElement = c}
               placeholder="link">
             </input>
             <button type="submit">add</button>
