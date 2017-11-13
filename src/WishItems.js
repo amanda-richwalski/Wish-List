@@ -11,7 +11,7 @@ class WishItems extends React.Component {
     for (var i = 0; i < wishEntries.length; i++) {
       var entry = wishEntries[i];
       wishItems.push(<li key={"item" + i}>
-        {entry.item} {entry.description} {entry.link}</li>);
+        {entry.item} | {entry.description} | {entry.link}</li>);
     }
 
     return (
