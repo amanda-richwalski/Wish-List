@@ -39,6 +39,6 @@
 }
 
 .wishListMain .theList li:hover {
-  background-color: pink;
+  background-color: purple;
   cursor: pointer;
 }

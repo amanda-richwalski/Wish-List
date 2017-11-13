@@ -1,74 +1,53 @@
 import React, { Component } from 'react';
-import wishItems from './WishItems';
+import WishItems from './WishItems';
 import './WishList.css';
 
-class wishList extends React.Component {
-  constructor(props, context) {
-    super(props, context);
+class WishList extends React.Component {
 
-    this.state = {
-      items: []
+
+    state = {
+      items: [],
+      item: "",
+      description: "",
+      link: ""
     };
 
-    this.addItem = this.addItem.bind(this);
-    this.deleteItem = this.deleteItem.bind(this);
-  }
-
-  addItem(e) {
-    var itemArray = this.state.items;
-
-    if(this._inputElement.value !== "") {
-      itemArray.unshift(
-        {
-          text: this._inputElement.value,
-          key: Date.now()
-        }
-      );
-
+    updateValue = (e) => {
       this.setState({
-        items: itemArray
+        [e.target.id]: e.target.value
       });
-
-      this._inputElement.value = "";
     }
 
-    console.log(itemArray);
-
-    e.preventDefault();
-  }
-
-  deleteItem(key) {
-    var filteredItems = this.state.items.filter(function (item) {
-      return (item.key !== key);
+  addItem = (e) => {
+    var itemArray = this.state.items;
+    itemArray.push({
+      item: this.state.item,
+      description: this.state.description,
+      link: this.state.link
     });
 
     this.setState({
-      items: filteredItems
+      items: itemArray,
+      item: "",
+      description: "",
+      link: ""
     });
   }
 
   render() {
     return (
       <div className="wishListMain">
-        <div className="header">
-          <form onSubmit={this.addItem}>
-            <input ref={(a) => this._inputElement = a}
-              placeholder="item">
-            </input>
-            <input ref={(b) => this._inputElement = b}
-              placeholder="description">
-            </input>
-            <input ref={(c) => this._inputElement = c}
-              placeholder="link">
-            </input>
-            <button type="submit">add</button>
-          </form>
+        <div className="header"
+          onChange={this.updateValue}>
+            <input id="item" placeholder="item" value={this.state.item}/>
+            <input id="description" placeholder="description" value={this.state.description}/>
+            <input id="link" placeholder="link" value={this.state.link}/>
+            <button onClick={this.addItem}>add</button>
         </div>
-        <wishItems entries={this.state.items}
-                   delete={this.deleteItem}/>
+        <wishItems entries={this.state.items}/>
       </div>
     );
   }
 };
 
-export default wishList;
+export default WishList;

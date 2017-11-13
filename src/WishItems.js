@@ -1,35 +1,25 @@
 import React, { Component } from 'react';
-import FlipMove from 'react-flip-move';
 
-class wishItems extends React.Component {
-  constructor(props, context) {
-    super(props, context);
+var destination = document.querySelector("container");
 
-    this.createTasks = this.createTasks.bind(this);
-    this.delete = this.delete.bind(this);
-  }
-
-  delete(key) {
-    this.props.delete(key);
-  }
-
-  createTasks(item) {
-    return <li onClick={(e) => this.delete(item.key, e)}
-              key={item.key}>{item.text}</li>
-  }
+class WishItems extends React.Component {
 
   render() {
     var wishEntries = this.props.entries;
-    var wishItems = wishEntries.map(this.createTasks);
+    var wishItems = [];
+
+    for (var i = 0; i < wishEntries.length; i++) {
+      var entry = wishEntries[i];
+      wishItems.push(<li key={"item" + i}>
+        <a href={entry.link}>{entry.item}</a>:{entry.description}</li>);
+    }
 
     return (
-      <ul className="thewish">
-        <FlipMove duration={250} easing="ease-out">
-          {wishItems}
-        </FlipMove>
+      <ul className="theWish">
+        {wishItems}
       </ul>
     );
   }
 };
 
-export default wishItems;
+export default WishItems;
