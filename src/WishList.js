@@ -44,7 +44,7 @@ class WishList extends React.Component {
             <input id="link" placeholder="link" value={this.state.link}/>
             <button onClick={this.addItem}>add</button>
         </div>
-        <wishItems entries={this.state.items}/>
+        <WishItems entries={this.state.items}/>
       </div>
     );
   }
